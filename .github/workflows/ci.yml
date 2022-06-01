@@ -9,4 +9,5 @@ jobs:
     - name: Run Django unittests
       run: |
         pip3 install --user django
+        pip3 install django-simple-captcha
         python3 manage.py test
