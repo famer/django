@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ITjobs{% block title %}{% endblock %}</title>
+        <link href="{% static 'web/styles.css' %}" rel="stylesheet">
+        {% block styles %}
+        {% endblock %}
+        <!-- Bootstrap CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1><a href="{% url 'index' %}">ITjobs</a></h1>
+        {% block body %}
+        {% endblock %}
+        <a href="{% url 'add' %}">Добавить вакансию</a>
+    </body>
+</html>

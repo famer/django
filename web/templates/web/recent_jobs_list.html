@@ -1,0 +1,25 @@
+<ul>
+{% for job in jobs %}
+    <li><h3><a href="{% url 'job' job.id %}">{{ job.title }}</a></h3>
+        {% if job.net_salary_from or job.net_salary_to %}
+            <p>ЗП на руки
+                {% if job.net_salary_from %}
+                    от {{ job.net_salary_from }}
+                {% endif %}
+                {% if job.net_salary_to %}
+                    до {{ job.net_salary_to }}
+                {% endif %} ₽
+            </p>
+        {% endif %}
+        <ul>
+        {% for tag in job.tags.all %}
+            <li>{{ tag }}</li>
+        {% endfor %}
+        </ul>
+        <p>{{ job.city }}</p>
+        <p>Дата публикации: {{ job.pub_date | date:"M d, Y: H:i" }}</p>
+    </li>
+{% empty %}
+    <li>Нет вакансий</li>
+{% endfor %}
+</ul>

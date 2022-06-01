@@ -1,0 +1,8 @@
+<form class="row g-3" action="{% url 'jobs' %}" method="get">
+    <div class="col-auto">
+        <input class="form-control" type="text" placeholder="Поиск" name="q" value="{{ request.GET.q }}">
+    </div>
+    <div class="col-auto">
+        <input class="btn btn-primary mb-3" type="submit" value="искать">
+    </div>
+</form>

@@ -1,0 +1,14 @@
+{% extends "web/layout.html" %}
+
+{% block title %} - IT вакансии{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    {% include "web/search_form.html" %}
+    <h2><a href="{% url 'jobs' %}">Свежие вакансии</a></h2>
+    {% include "web/recent_jobs_list.html" %}
+
+    <a href="{% url 'add' %}">Добавить вакансию</a>
+{% endblock %}

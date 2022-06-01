@@ -1,0 +1,29 @@
+{% extends "web/layout.html" %}
+
+{% block title %} - {{ job.title }}{% endblock %}
+
+{% block body %}
+    {% include "web/search_form.html" %}
+    <h2>{{ job.title }}</h2>
+    <p>{{ job.company }}</p>
+    {% if job.net_salary_from or job.net_salary_to %}
+        <p>ЗП на руки
+            {% if job.net_salary_from %}
+                от {{ job.net_salary_from }}
+            {% endif %}
+            {% if job.net_salary_to %}
+                до {{ job.net_salary_to }}
+            {% endif %} ₽
+        </p>
+    {% endif %}
+    <ul>
+        {% for tag in job.tags.all %}
+            <li>{{ tag }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ job.description }}</p>
+    <p>{{ job.contacts}}</p>
+    <p>Размещение: {{ job.city.title }}</p>
+
+    <a href="{% url 'add' %}">Добавить вакансию</a>
+{% endblock %}
