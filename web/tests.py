@@ -24,16 +24,35 @@ class JobTestCase(TestCase):
         
         # Create jobs
         # Valid job
-        nodejs_job = Job.objects.create(title="Node.js developer", company="OOO LTD", description="Develop some greate Node.js application", city=spb, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=50000, net_salary_to=12000, moderated=True)
+        nodejs_job = Job.objects.create(title="Node.js developer",\
+                        company="OOO LTD",\
+                        description="Develop some greate Node.js application",\
+                        city=spb, contacts="Email: dj.famer@gmail.com, tg: famer",\
+                        net_salary_from=50000,\
+                        net_salary_to=12000,\
+                        moderated=True)
+                        
         nodejs_job.tags.add(express_tag)
         nodejs_job.tags.add(node_tag)
 
         # Invalid job, no description
-        swift_job = Job.objects.create(title="Swift developer", city=moscow, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=70000, net_salary_to=140000, moderated=True)
+        swift_job = Job.objects.create(title="Swift developer",\
+                    city=moscow,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=70000,\
+                    net_salary_to=140000,\
+                    moderated=True)
+
         swift_job.tags.add(swift_tag)
 
         # Not moderated
-        django_job = Job.objects.create(title="Django developer", company="OOO LTD", description="Develop some greate django application", city=nn, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=60000, net_salary_to=120000)
+        django_job = Job.objects.create(title="Django developer",\
+                    company="OOO LTD",\
+                    description="Develop some greate django application",\
+                    city=nn,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=60000, net_salary_to=120000)
+
         django_job.tags.add(python_tag)
         django_job.tags.add(django_tag)
 
