@@ -111,7 +111,13 @@ class JobTestCase(TestCase):
 
     def test_valid_job_page(self):
         city = City.objects.get(title="Санкт-Петербург")
-        j = Job.objects.get(title="Node.js developer", company="OOO LTD", description="Develop some greate Node.js application", city=city, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=50000, net_salary_to=12000, moderated=True)
+        j = Job.objects.get(title="Node.js developer",\
+                    company="OOO LTD",\
+                    description="Develop some greate Node.js application",\
+                    city=city,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=50000, net_salary_to=12000,\
+                    moderated=True)
 
         c = Client()
         response = c.get(f"/jobs/{j.id}")
