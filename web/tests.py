@@ -66,17 +66,29 @@ class JobTestCase(TestCase):
 
     def test_is_valid_job(self):
         nn = City.objects.get(title="Нижний Новгород")
-        j = Job.objects.get(title="Django developer", company="OOO LTD", description="Develop some greate django application", city=nn, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=60000, net_salary_to=120000)
+        j = Job.objects.get(title="Django developer",\
+                    company="OOO LTD",\
+                    description="Develop some greate django application",\
+                    city=nn, contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=60000, net_salary_to=120000)
         self.assertTrue(j.is_valid_job())
 
     def test_is_invalid_salary(self):
         spb = City.objects.get(title="Санкт-Петербург")
-        j = Job.objects.get(title="Node.js developer", company="OOO LTD", description="Develop some greate Node.js application", city=spb, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=50000, net_salary_to=12000)
+        j = Job.objects.get(title="Node.js developer",\
+                    company="OOO LTD",\
+                    description="Develop some greate Node.js application",\
+                    city=spb,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=50000, net_salary_to=12000)
         self.assertFalse(j.is_valid_job())
 
     def test_is_invalid_description(self):
         moscow = City.objects.get(title="Москва")
-        j = Job.objects.get(title="Swift developer", city=moscow, contacts="Email: dj.famer@gmail.com, tg: famer", net_salary_from=70000, net_salary_to=140000)
+        j = Job.objects.get(title="Swift developer",\
+                    city=moscow,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=70000, net_salary_to=140000)
         self.assertFalse(j.is_valid_job())
 
     def test_index(self):
