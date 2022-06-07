@@ -10,14 +10,14 @@ from .forms import NewJobForm
 
 # Create your views here.
 def index(request):
-    jobs = Job.objects.filter(moderated=True).order_by('-update_date')[:10]
+    jobs = Job.moderated_objects.order_by('-update_date')[:10]
     return render(request, "web/index.html", {
         "jobs": jobs
     })
 
 def jobs_list(request):
     query = request.GET.get('q', '')
-    jobs = Job.objects.filter(moderated=True)
+    jobs = Job.moderated_objects
     if query:
         jobs = jobs.filter(Q(title__contains=query) | Q(description__contains=query) | Q(tags__title__contains=query))
     
@@ -28,7 +28,7 @@ def jobs_list(request):
 
 def job(request, job_id):
     try:
-        job = Job.objects.get(pk=job_id, moderated=True)
+        job = Job.moderated_objects.get(pk=job_id)
     except Job.DoesNotExist:
         raise Http404("404")
 

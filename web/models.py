@@ -1,6 +1,11 @@
 from django.db import models
 from django.utils import timezone
 
+# Moderated jobs obly queryset manager
+class ModeratedJobManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(moderated=True)
+
 # Create your models here.
 class City(models.Model):
     title = models.CharField(max_length=64, unique=True)
@@ -27,6 +32,9 @@ class Job(models.Model):
     moderated = models.BooleanField(default=False)
     pub_date = models.DateTimeField(default=timezone.now)
     update_date = models.DateTimeField(default=timezone.now)
+
+    objects = models.Manager()
+    moderated_objects = ModeratedJobManager()
 
     def is_valid_job(self):
         if self.net_salary_from and self.net_salary_to:
