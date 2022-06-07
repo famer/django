@@ -134,6 +134,7 @@ class JobTestCase(TestCase):
         c = Client()
         response = c.get(f"/jobs/{j.id}")
         self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.context.get('jobs'), None)
     
     def test_invalid_job_page(self):
         max_id = Job.objects.all().aggregate(Max("id"))["id__max"]
