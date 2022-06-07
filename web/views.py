@@ -28,9 +28,12 @@ def jobs_list(request):
 
 def job(request, job_id):
     try:
-        job = Job.moderated_objects.get(pk=job_id)
+        job = Job.objects.get(pk=job_id)
     except Job.DoesNotExist:
         raise Http404("404")
+    
+    if not job.moderated:
+        return render(request, "web/moderation.html", status=404)
 
     return render(request, "web/job.html", {
         "job": job
@@ -65,7 +68,7 @@ def job_add(request):
 
                     job.tags.add(db_tag)
             
-            return HttpResponseRedirect(reverse('moderation'))
+            return HttpResponseRedirect(reverse('job', args=(job.id,)))
             
         else:
             return render(request, "web/job_add.html", {
@@ -77,5 +80,3 @@ def job_add(request):
         "form": NewJobForm()
     })
 
-def job_moderation(request):
-    return render(request, "web/moderation.html")
