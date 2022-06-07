@@ -123,6 +123,18 @@ class JobTestCase(TestCase):
         response = c.get(f"/jobs/{j.id}")
         self.assertEqual(response.status_code, 200)
     
+    def test_unmodeerated_job_page(self):
+        city = City.objects.get(title='Нижний Новгород')
+        j = Job.objects.get(title="Django developer",\
+                    company="OOO LTD",\
+                    description="Develop some greate django application",\
+                    city=city,\
+                    contacts="Email: dj.famer@gmail.com, tg: famer",\
+                    net_salary_from=60000, net_salary_to=120000)
+        c = Client()
+        response = c.get(f"/jobs/{j.id}")
+        self.assertEqual(response.status_code, 404)
+    
     def test_invalid_job_page(self):
         max_id = Job.objects.all().aggregate(Max("id"))["id__max"]
 
