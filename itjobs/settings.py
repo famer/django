@@ -88,7 +88,6 @@ DATABASES = {
         'TEST': {
             # this gets you in-memory sqlite for tests, which is fast
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 }
