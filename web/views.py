@@ -19,9 +19,9 @@ def jobs_list(request):
     jobs = Job.moderated_objects
     if query:
         jobs = jobs.filter(
-            Q(title__contains=query)
-            | Q(description__contains=query)
-            | Q(tags__title__contains=query)
+            Q(title__icontains=query)
+            | Q(description__icontains=query)
+            | Q(tags__title__icontains=query)
         )
 
     jobs = jobs.order_by("-update_date").distinct()[:10]
