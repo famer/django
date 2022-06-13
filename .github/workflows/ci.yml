@@ -8,6 +8,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run Django unittests
       run: |
-        pip3 install --user django
-        pip3 install django-simple-captcha
+        pip3 install -r requirements.txt
         python3 manage.py test
