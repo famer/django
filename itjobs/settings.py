@@ -85,12 +85,13 @@ DATABASES = {
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
         'HOST': 'db',
         'PORT': 5432,
-        'TEST': {
-            # this gets you in-memory sqlite for tests, which is fast
-            'ENGINE': 'django.db.backends.sqlite3',
-        }
     }
 }
+
+# use sqlite for testing purposes
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 # Password validation
