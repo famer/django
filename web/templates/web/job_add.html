@@ -10,7 +10,7 @@
     }
 </style>
 <div class="row">
-    <form class="col-4" action="{% url 'add' %}" method="post">
+    <form class="col-11 col-sm-8" action="{% url 'add' %}" method="post">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
