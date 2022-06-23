@@ -21,7 +21,7 @@
             <li>{{ tag }}</li>
         {% endfor %}
     </ul>
-    <p>{{ job.description }}</p>
+    <p>{{ job.description | linebreaks }}</p>
     <p>{{ job.contacts}}</p>
     <p>Размещение: {{ job.city.title }}</p>
 
