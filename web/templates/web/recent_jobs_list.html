@@ -16,7 +16,7 @@
             <li>{{ tag }}</li>
         {% endfor %}
         </ul>
-        <p>{{ job.city }}</p>
+        <p>{{ job.city.title }}</p>
         <p>Дата публикации: {{ job.pub_date | date:"M d, Y: H:i" }}</p>
     </li>
 {% empty %}
