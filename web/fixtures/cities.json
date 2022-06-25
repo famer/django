@@ -1,0 +1,121 @@
+[
+{
+  "model": "web.city",
+  "pk": 3,
+  "fields": {
+    "title": "Удаленка"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 4,
+  "fields": {
+    "title": "Москва"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 5,
+  "fields": {
+    "title": "Санк-Петербург"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 6,
+  "fields": {
+    "title": "Нижний Новгород"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 7,
+  "fields": {
+    "title": "Краснодар"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 8,
+  "fields": {
+    "title": "Самара"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 9,
+  "fields": {
+    "title": "Тагил"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 10,
+  "fields": {
+    "title": "Пермь"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 11,
+  "fields": {
+    "title": "Казань"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 12,
+  "fields": {
+    "title": "Екатиринбург"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 13,
+  "fields": {
+    "title": "Новосибирск"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 14,
+  "fields": {
+    "title": "Воронеж"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 15,
+  "fields": {
+    "title": "Ростов-на-Дону"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 16,
+  "fields": {
+    "title": "Омск"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 17,
+  "fields": {
+    "title": "Волгоград"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 18,
+  "fields": {
+    "title": "Челябинск"
+  }
+},
+{
+  "model": "web.city",
+  "pk": 19,
+  "fields": {
+    "title": "Уфа"
+  }
+}
+]
