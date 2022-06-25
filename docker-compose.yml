@@ -19,6 +19,7 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=itjobs.settings.local
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
