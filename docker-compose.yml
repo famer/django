@@ -4,7 +4,8 @@ services:
   db:
     image: postgres:14
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./data/db:/var/lib/postgresql/data:z
+    privileged: true
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
@@ -12,11 +13,12 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application
     volumes:
-      - .:/app
+      - .:/app:z
     ports:
       - "8000:8000"
+    privileged: true
     environment:
       - DEBUG=True
       - DJANGO_SETTINGS_MODULE=itjobs.settings.local
@@ -25,3 +27,4 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+    entrypoint: /bin/sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application"
