@@ -1,15 +1,23 @@
-FROM python
+# Используем официальный образ Python как базовый
+FROM python:3.9
 
-RUN apt-get update
-RUN apt-get -y install libz-dev libjpeg-dev libfreetype6-dev python-dev
-ENV POSTGRES_PASSWORD=postgres
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=postgres
-ENV DJANGO_SETTINGS_MODULE=itjobs.settings.pro
-COPY . /app
+# Устанавливаем рабочую директорию
 WORKDIR /app
-RUN pip install -r requirements.txt
-RUN python manage.py migrate
-RUN python manage.py loaddata cities.json
+
+# Копируем файл зависимостей в контейнер
+COPY requirements.txt .
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем весь проект в рабочую директорию контейнера
+COPY . .
+
+# Выполняем команду collectstatic
+#RUN python manage.py collectstatic --noinput
+
+# Открываем порт 8000
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "--insecure", "0.0.0.0:8000"]
+
+# Команда для запуска приложения
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
