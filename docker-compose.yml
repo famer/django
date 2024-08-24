@@ -27,4 +27,4 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
-    entrypoint: /bin/sh -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application"
+    entrypoint: /bin/sh -c "python manage.py migrate && python manage.py loaddata cities.json && gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application"
