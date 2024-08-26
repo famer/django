@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt --progress-bar=off
 COPY . .
 
 # Выполняем команду collectstatic
-RUN python manage.py collectstatic --noinput
+#RUN python manage.py collectstatic --noinput
 
 # Открываем порт 8000
 EXPOSE 8000
