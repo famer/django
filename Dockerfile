@@ -1,6 +1,10 @@
 # Используем официальный образ Python как базовый
 FROM python:3.9
 
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
