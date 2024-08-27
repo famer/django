@@ -24,7 +24,7 @@ def signup_view(request):
     })
 
 def index(request):
-    ...
+    return HttpResponse(request.user)
 
 def login_view(request):
     form = AuthenticationForm()
