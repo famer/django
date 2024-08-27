@@ -44,7 +44,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)  # Вход пользователя в систему
-            return redirect('')  # Перенаправление на домашнюю страницу или другую страницу
+            return redirect('index')  # Перенаправление на домашнюю страницу или другую страницу
         else:
             return HttpResponse("Invalid credentials")
     else:
