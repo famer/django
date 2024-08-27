@@ -24,7 +24,12 @@ def signup_view(request):
     })
 
 def index(request):
-    return HttpResponse(request.user)
+    if request.user.is_authenticated:
+        username = request.user.username
+        return HttpResponse(f'Hello, {username}!')
+    else:
+        return HttpResponse('Hello, Guest!')
+
 
 def login_view(request):
     form = AuthenticationForm()
