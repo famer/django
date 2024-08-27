@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'web',
-    #'users',
+    'users',
     'captcha',
     'django.contrib.admin',
     'django.contrib.auth',
