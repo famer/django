@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import SignUpForm
 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -26,7 +27,10 @@ def index(request):
     ...
 
 def login_view(request):
-    return render(request, "registration/login.html")
+    form = AuthenticationForm()
+    return render(request, "registration/login.html", {
+        "form": form
+    })
 
 def logout_view(request):
     ...
