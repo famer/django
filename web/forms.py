@@ -11,8 +11,7 @@ class NewJobForm(forms.Form):
     city = forms.ModelChoiceField(queryset=City.objects.all(), label="Местоположение работы", required=True)
     net_salary_from = forms.IntegerField(label="ЗП на руки от", required=False, min_value=0)
     net_salary_to = forms.IntegerField(label="ЗП на руки до", required=False, min_value=0)
-    captcha = CaptchaField(label="Капча")
-
+    
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(NewJobForm, self).__init__(*args, **kwargs)
@@ -20,6 +19,10 @@ class NewJobForm(forms.Form):
         if self.user and self.user.is_authenticated:
             # Логика для авторизованных пользователей
             self.fields['captcha'] = None
+        else:
+            # Логика для неавторизованных пользователей
+            self.fields['captcha'] = CaptchaField(label="Капча")
+
 
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
