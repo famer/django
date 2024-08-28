@@ -16,14 +16,11 @@ class NewJobForm(forms.Form):
         self.user = kwargs.pop('user', None)
         super(NewJobForm, self).__init__(*args, **kwargs)
 
-        if self.user and self.user.is_authenticated:
-            # Логика для авторизованных пользователей
-            self.fields['captcha'] = None
-        else:
+        if not (self.user and self.user.is_authenticated):
             # Логика для неавторизованных пользователей
             self.fields['captcha'] = CaptchaField(label="Капча")
 
 
-        #for visible in self.visible_fields():
-        #    visible.field.widget.attrs['class'] = 'form-control'
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
         
