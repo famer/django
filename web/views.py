@@ -42,7 +42,7 @@ def job(request, job_id):
 
 def job_add(request):
     if request.method == "POST":
-        form = NewJobForm(request.POST)
+        form = NewJobForm(request.POST, user = request.user)
         if form.is_valid():
             title = form.cleaned_data["title"]
             company = form.cleaned_data["company"]
