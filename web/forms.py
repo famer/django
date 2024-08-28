@@ -14,6 +14,13 @@ class NewJobForm(forms.Form):
     captcha = CaptchaField(label="Капча")
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super(NewJobForm, self).__init__(*args, **kwargs)
+
+        if self.user and self.user.is_authenticated:
+            # Логика для авторизованных пользователей
+            self.fields['captcha'] = None
+
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+        

@@ -85,5 +85,5 @@ def job_add(request):
     return render(
         request,
         "web/job_add.html",
-        {"cities": City.objects.all(), "form": NewJobForm()},
+        {"cities": City.objects.all(), "form": NewJobForm(user = request.user)},
     )
