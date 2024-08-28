@@ -21,7 +21,7 @@ services:
     privileged: true
     environment:
       - DEBUG=True
-      - DJANGO_SETTINGS_MODULE=itjobs.settings.local
+      - DJANGO_SETTINGS_MODULE=itjobs.settings.prod
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
