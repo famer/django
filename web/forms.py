@@ -18,10 +18,10 @@ class NewJobForm(forms.Form):
 
         if self.user and self.user.is_authenticated:
             # Логика для авторизованных пользователей
-            self.fields['captcha'] = None
+            self.fields['captcha'].initial = None
         else:
             # Логика для неавторизованных пользователей
-            self.fields['captcha'] = CaptchaField(label="Капча")
+            self.fields['captcha'].initial = CaptchaField(label="Капча")
 
 
         for visible in self.visible_fields():
