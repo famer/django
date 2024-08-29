@@ -10,9 +10,6 @@ class ModeratedJobManager(models.Manager):
 class City(models.Model):
     title = models.CharField(max_length=64, unique=True)
 
-    class Meta:
-        app_label = 'web'
-
     def __str__(self):
         return f"{self.title}"
 
