@@ -12,6 +12,10 @@ class City(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+    class Meta:
+        verbose_name = "City"
+        verbose_name_plural = "Cities"
 
 class Tag(models.Model):
     title = models.CharField(max_length=12, unique=True)
