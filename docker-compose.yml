@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:14
     volumes:
-      - ./data/db:/var/lib/postgresql/data:z
+      - ./data/db:/var/lib/postgresql/data:Z
     privileged: true
     environment:
       - POSTGRES_NAME=postgres
@@ -15,7 +15,7 @@ services:
     build: .
     command: gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application
     volumes:
-      - .:/app:z
+      - .:/app:Z
     ports:
       - "8000:8000"
     privileged: true
@@ -33,7 +33,7 @@ services:
     ports: 
       - "80:80" 
     volumes: 
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf 
-      - ./itjobs/staticfiles:/app/staticfiles 
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:Z
+      - ./itjobs/staticfiles:/app/staticfiles:Z
     depends_on: 
       - web 
