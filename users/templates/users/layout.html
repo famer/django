@@ -4,9 +4,9 @@
     <head>
         <title>ITjobs{% block title %}{% endblock %}</title>
         <link href="{% static 'web/styles.css' %}" rel="stylesheet">
-        <script type="text/javascript"></script>
-            if (window.location.protocol === "http:") {
-                window.location.href = "https://" + window.location.hostname + window.location.pathname + window.location.search;
+        <script type="text/javascript">
+            if (window.location.protocol === "http:" && window.location.hostname !== 'localhost') {
+                console.log(window.location.hostname);//window.location.href = "https://" + window.location.hostname + window.location.pathname + window.location.search;
             }
         </script>
         {% block styles %}

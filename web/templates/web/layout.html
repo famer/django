@@ -5,8 +5,8 @@
         <title>ITjobs{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{% static 'web/styles.css' %}" rel="stylesheet">
-        <script type="text/javascript"></script>
-            if (window.location.protocol === "http:") {
+        <script type="text/javascript">
+            if (window.location.protocol === "http:" && window.location.hostname !== 'localhost') {
                 window.location.href = "https://" + window.location.hostname + window.location.pathname + window.location.search;
             }
         </script>
