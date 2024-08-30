@@ -1,11 +1,11 @@
-{% extends "users/layout.html" %}
+{% extends "web/layout.html" %}
 {% block title %} - Зарегистрироваться{% endblock %}
 
 {% block body %}
-    <h2>Sign up</h2>
+    <h2>Регистрация</h2>
     <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <button class="btn btn-primary" type="submit">Регистрация</button>
     </form>
 {% endblock %}

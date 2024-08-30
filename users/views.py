@@ -17,11 +17,15 @@ class SignUpView(generic.CreateView):
 # Create your views here.
 
 def signup_view(request):
-    return HttpResponse("WIP")
-    form = SignUpForm()
-    return render(request, "users/signup.html", {
-        "form": form
-    })
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('users:index')  # укажите URL после успешной регистрации
+    else:
+        form = SignUpForm()
+    return render(request, 'users/signup.html', {'form': form})
 
 def index(request):
     if request.user.is_authenticated:
@@ -46,7 +50,7 @@ def login_view(request):
             return HttpResponse("Invalid credentials")
     else:
         form = AuthenticationForm()
-        return render(request, "registration/login.html", {
+        return render(request, "users/login.html", {
             "form": form
         })
 
