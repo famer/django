@@ -1,4 +1,15 @@
-Hello, {{ username }}!
-<p>
-    <a href="{% url 'users:logout' %}">Logout</a>
-</p>
+{% extends "web/layout.html" %}
+
+{% block title %} - IT профиль{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    Hello, {{ username }}!
+    <p>
+        <a href="{% url 'users:logout' %}">Logout</a>
+    </p>
+
+    <a href="{% url 'add' %}">Добавить вакансию</a>
+{% endblock %}

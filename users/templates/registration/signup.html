@@ -1,8 +1,19 @@
 <!-- templates/registration/signup.html -->
 
-<h2>Sign Up</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-</form>
+{% extends "web/layout.html" %}
+
+{% block title %} - IT регистрация{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    <h2>Sign Up</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <a href="{% url 'add' %}">Добавить вакансию</a>
+{% endblock %}
