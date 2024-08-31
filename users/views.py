@@ -40,6 +40,7 @@ def signup_view(request):
             })
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(mail_subject, message, to=[to_email])
+            email.content_subtype = "html"
             email.send()
             return HttpResponse('Please confirm your email address to complete the registration')
             # email confirmation end
