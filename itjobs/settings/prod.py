@@ -4,6 +4,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['itjobs.famer.keenetic.pro', 'gorbierd.ddns.net', 'localhost']
 
+SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
