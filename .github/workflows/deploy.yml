@@ -26,10 +26,11 @@ jobs:
       run: |
         docker build -t famer/itjobs:latest .
         docker push famer/itjobs:latest
+
     - name: Deploy to Production Server
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
         echo "${SSH_PRIVATE_KEY}" > key.pem
         chmod 600 key.pem
-        ssh -p 2206 -o StrictHostKeyChecking=no -i key.pem core@gorbierd.ddns.net 'cd itjobs &&  git fetch --all && git reset --hard origin/main && docker pull famer/itjobs:latest && docker-compose down && docker-compose up -d'
+        ssh -p 2206 -o StrictHostKeyChecking=no -i key.pem core@gorbierd.ddns.net 'cd itjobs &&  git fetch --all && git reset --hard origin/main && docker pull famer/itjobs:latest && docker-compose down && docker-compose up -d --build'
