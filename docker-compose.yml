@@ -40,6 +40,8 @@ services:
     command: celery -A itjobs worker --loglevel=info
     environment:
       - DJANGO_SETTINGS_MODULE=itjobs.settings.prod
+    env_file:
+      - .env
     volumes:
       - .:/app
     depends_on:
