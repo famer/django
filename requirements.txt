@@ -1,7 +1,7 @@
 gunicorn>=20.0.4
 Django>=3.0,<4.0
 psycopg2-binary>=2.8
-celery==5.x.x
-redis==4.x.x
+celery==5.4.0
+redis==5.0.8
 django-simple-captcha
 six
