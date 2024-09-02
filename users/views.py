@@ -11,9 +11,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.contrib.auth import get_user_model
+from .tasks import send_email
 
 
 class SignUpView(generic.CreateView):
@@ -39,9 +39,7 @@ def signup_view(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.content_subtype = "html"
-            email.send()
+            send_email.delay(mail_subject, message, to_email, html=True)
             return HttpResponse('Please confirm your email address to complete the registration')
             # email confirmation end
         

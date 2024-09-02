@@ -28,8 +28,23 @@ services:
       - .env
     depends_on:
       - db
+      - redis
+      - celery
     entrypoint: /bin/sh -c "python manage.py migrate && python manage.py loaddata cities.json && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 itjobs.wsgi:application"
 
+  redis:
+    image: "redis:alpine"
+
+  celery:
+    build: .
+    command: celery -A myproject worker --loglevel=info
+    environment:
+      - DJANGO_SETTINGS_MODULE=itjobs.settings.prod
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+  
   nginx: 
     image: nginx:latest 
     ports: 
