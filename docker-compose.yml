@@ -37,7 +37,7 @@ services:
 
   celery:
     build: .
-    command: celery -A myproject worker --loglevel=info
+    command: celery -A itjobs worker --loglevel=info
     environment:
       - DJANGO_SETTINGS_MODULE=itjobs.settings.prod
     volumes:
