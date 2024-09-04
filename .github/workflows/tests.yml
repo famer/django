@@ -1,0 +1,13 @@
+name: Testing
+on: push
+
+jobs:
+  test-project:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Django unittests
+      run: |
+        pip3 install -r requirements.txt
+        export DJANGO_SETTINGS_MODULE=itjobs.settings.local
+        python3 manage.py test
