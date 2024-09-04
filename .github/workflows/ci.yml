@@ -32,6 +32,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Install SonarQube Scanner
+      run: npm install -g sonarqube-scanner
+
     - name: Run SonarQube Scan
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
