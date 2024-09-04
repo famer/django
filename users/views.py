@@ -43,7 +43,6 @@ def signup_view(request):
             return HttpResponse('Please confirm your email address to complete the registration')
             # email confirmation end
         
-            #login(request, user)
             #return redirect('users:index')  # укажите URL после успешной регистрации
     else:
         form = SignUpForm()
