@@ -1,13 +1,24 @@
-name: Testing
-on: push
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  test-project:
+  sonarQube:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run Django unittests
-      run: |
-        pip3 install -r requirements.txt
-        export DJANGO_SETTINGS_MODULE=itjobs.settings.local
-        python3 manage.py test
+      - uses: actions/checkout@v3
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=itjobs \
+          -Dsonar.projectName=ITJobs \
+          -Dsonar.sources=. \
+          -Dsonar.language=py \
+          -Dsonar.host.url=https://sonar.famer.keenetic.pro \
+          -Dsonar.login=$SONAR_TOKEN
