@@ -40,7 +40,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         sonar-scanner \
-        -Dsonar.projectKey=my_project_key \
+        -Dsonar.projectKey=itjobs \
         -Dsonar.sources=. \
         -Dsonar.host.url=https://sonar.famer.keenetic.pro \
         -Dsonar.login=$SONAR_TOKEN
