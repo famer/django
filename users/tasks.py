@@ -1,5 +1,8 @@
 from celery import shared_task
 from django.core.mail import EmailMessage
+import logging 
+
+logger = logging.getLogger('itjobs')
 
 @shared_task(
     autoretry_for=(Exception,),  # Retry for any exception
@@ -11,3 +14,4 @@ def send_email(mail_subject, message, to_email, html):
     if html is True:
         email.content_subtype = "html"
     email.send()
+    logger.info(f'Activation email to {to_email} sent')
