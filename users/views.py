@@ -14,7 +14,9 @@ from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
 from django.contrib.auth import get_user_model
 from .tasks import send_email
+import logging 
 
+logger = logging.getLogger('itjobs')
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
@@ -28,6 +30,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
+            logger.info(f'User { user.username } registered')
 
             # email confirmation 
             current_site = get_current_site(request)
