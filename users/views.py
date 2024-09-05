@@ -40,7 +40,7 @@ def signup_view(request):
             })
             to_email = form.cleaned_data.get('email')
             send_email.delay(mail_subject, message, to_email, html=True)
-            return render(request, "users/basic.html", {
+            return render(request, "users/base.html", {
                 "title": "подтвердите email",
                 "text": "Подтвердите Ваш email для завершения регистрации"
             })
