@@ -1,0 +1,11 @@
+{% extends "web/layout.html" %}
+
+{% block title %} - IT {{ title }}{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+<p>Благодарим за подтверждение email адреса</p>
+<a href="{% url 'users:home' %}">Welcome</a>
+{% endblock %}

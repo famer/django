@@ -40,10 +40,12 @@ def signup_view(request):
             })
             to_email = form.cleaned_data.get('email')
             send_email.delay(mail_subject, message, to_email, html=True)
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request, "users/basic.html", {
+                "title": "подтвердите email",
+                "text": "Подтвердите Ваш email для завершения регистрации"
+            })
             # email confirmation end
         
-            #return redirect('users:index')  # укажите URL после успешной регистрации
     else:
         form = SignUpForm()
     return render(request, 'users/signup.html', {'form': form})
@@ -61,7 +63,9 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return render(request, "users/after_registration.html", {
+                "title": "подтверждение регистрации",
+        })
     else:
         return HttpResponse('Activation link is invalid!')
 
