@@ -7,7 +7,7 @@ services:
       - ./data/db:/var/lib/postgresql/data:Z
     privileged: true
     environment:
-      - POSTGRES_NAME=postgres
+      - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
@@ -21,7 +21,7 @@ services:
     privileged: true
     environment:
       - DJANGO_SETTINGS_MODULE=itjobs.settings.prod
-      - POSTGRES_NAME=postgres
+      - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     env_file:
