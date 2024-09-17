@@ -14,6 +14,13 @@ web:
     enabled: true
     path: /
 
+celery:
+  name: celery
+  image:
+    repository: famer/itjobs
+    tag: "latest"
+    pullPolicy: IfNotPresent
+
 db:
   name: db
   image:
