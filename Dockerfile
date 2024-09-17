@@ -24,4 +24,4 @@ COPY . .
 EXPOSE 8000
 
 # Команда для запуска приложения
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "itjobs.wsgi:application"]
