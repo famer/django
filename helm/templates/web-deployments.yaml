@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.web.name }}
+  labels:
+    app: {{ .Values.web.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.web.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.web.name }}
+    spec:
+      containers:
+        - name: {{ .Values.web.name }}
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.web.service.port }}
+          env:
+            - name: POSTGRES_DB
+              value: itjobs
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: REDIS_HOST
+              value: redis
+            - name: DJANGO_SETTINGS_MODULE
+              value: itjobs.settings.prod
+

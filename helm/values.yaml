@@ -1,0 +1,16 @@
+replicaCount: 1
+
+web:
+  name: web
+  image:
+    repository: famer/itjobs
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 8000
+  ingress:
+    enabled: true
+    path: /
+
+
