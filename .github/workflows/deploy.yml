@@ -24,6 +24,7 @@ jobs:
 
     - name: Build and Push Docker image
       run: |
+        touch .env
         docker compose build
         docker compose push
 
