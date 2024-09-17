@@ -1,0 +1,30 @@
+# Этап 1: Сборка статических файлов с помощью Django
+FROM python:3.9-slim AS builder
+
+ENV DJANGO_SETTINGS_MODULE=itjobs.settings.prod
+
+# Устанавливаем зависимости
+COPY requirements.txt /app/
+WORKDIR /app
+RUN pip install -r requirements.txt
+
+# Копируем исходный код приложения
+COPY . /app
+
+# Собираем статические файлы
+RUN python manage.py collectstatic --noinput
+
+# Этап 2: Копируем статические файлы в Nginx
+FROM nginx:alpine
+
+# Копируем конфигурацию nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Копируем собранные статические файлы из предыдущего этапа
+COPY --from=builder /app/itjobs/staticfiles /app/staticfiles
+
+# Открываем порт 80 для nginx
+EXPOSE 80
+
+# Запускаем nginx
+CMD ["nginx", "-g", "daemon off;"]
