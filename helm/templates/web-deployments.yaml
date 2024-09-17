@@ -47,6 +47,11 @@ spec:
           ports:
             - containerPort: {{ .Values.web.service.port }}
           env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret-key
+                  key: SECRET_KEY
             - name: POSTGRES_DB
               value: itjobs
             - name: POSTGRES_USER
