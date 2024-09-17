@@ -19,6 +19,21 @@ spec:
          image: "{{ .Values.celery.image.repository }}:{{ .Values.celery.image.tag }}"
          command: ["celery", "-A", "itjobs", "worker", "--loglevel=info"]
          env:
+          - name: EMAIL_HOST_USER
+            valueFrom:
+              secretKeyRef:
+                name: django-email
+                key: EMAIL_HOST_USER
+          - name: EMAIL_HOST_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: django-email
+                key: EMAIL_HOST_PASSWORD
+          - name: DEFAULT_FROM_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: django-email
+                key: DEFAULT_FROM_EMAIL
           - name: REDIS_HOST
             value: redis
           - name: DJANGO_SETTINGS_MODULE
