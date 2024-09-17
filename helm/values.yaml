@@ -9,8 +9,27 @@ web:
   service:
     type: NodePort
     port: 8000
+    nodePort: 30000
   ingress:
     enabled: true
     path: /
 
+db:
+  name: db
+  image:
+    repository: postgres
+    tag: "14"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 5432
 
+redis:
+  name: redis
+  image:
+    repository: redis
+    tag: "alpine"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 6379
