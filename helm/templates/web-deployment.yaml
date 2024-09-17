@@ -47,7 +47,7 @@ spec:
           ports:
             - containerPort: {{ .Values.web.service.port }}
           env:
-            - name: DB_USERNAME
+            - name: SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: django-secret-key
