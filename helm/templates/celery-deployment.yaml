@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
        - name: {{ .Values.celery.name }}
-          image: "{{ .Values.celery.image.repository }}:{{ .Values.celery.image.tag }}"
-          command: ["celery", "-A", "itjobs", "worker", "--loglevel=info"]
-          env:
-            - name: REDIS_HOST
-              value: redis
-            - name: DJANGO_SETTINGS_MODULE
-              value: itjobs.settings.prod
+         image: "{{ .Values.celery.image.repository }}:{{ .Values.celery.image.tag }}"
+         command: ["celery", "-A", "itjobs", "worker", "--loglevel=info"]
+         env:
+          - name: REDIS_HOST
+            value: redis
+          - name: DJANGO_SETTINGS_MODULE
+            value: itjobs.settings.prod
 
