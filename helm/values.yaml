@@ -7,9 +7,21 @@ web:
     tag: "latest"
     pullPolicy: IfNotPresent
   service:
-    type: NodePort
+    type: ClusterIP
     port: 8000
-    nodePort: 30000
+  ingress:
+    enabled: true
+    path: /
+
+nginx:
+  name: nginx
+  image:
+    repository: famer/itjobs-nginx
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
   ingress:
     enabled: true
     path: /
