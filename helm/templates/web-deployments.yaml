@@ -14,6 +14,21 @@ spec:
       labels:
         app: {{ .Values.web.name }}
     spec:
+      initContainers:
+        - name: migration
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+          command: ["python", "manage.py", "migrate"]
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: itjobs.settings.prod
+          
+        - name: migration
+          image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
+          command: ["python", "manage.py", "loaddata", "cities.json"]
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: itjobs.settings.prod
+
       containers:
         - name: {{ .Values.web.name }}
           image: "{{ .Values.web.image.repository }}:{{ .Values.web.image.tag }}"
