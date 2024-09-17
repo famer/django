@@ -24,8 +24,8 @@ jobs:
 
     - name: Build and Push Docker image
       run: |
-        docker build -t famer/itjobs:latest .
-        docker push famer/itjobs:latest
+        docker-compose build
+        docker-compose push
 
     - name: Deploy to Production Server
       env:
