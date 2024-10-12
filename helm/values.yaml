@@ -9,9 +9,6 @@ web:
   service:
     type: ClusterIP
     port: 8000
-  ingress:
-    enabled: true
-    path: /
 
 nginx:
   name: nginx
