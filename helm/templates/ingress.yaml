@@ -2,10 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: itjobs-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     
 spec:
   rules:
-    - http:
+    - host: itjobs.os-fonder.ru
+      http:
         paths:
           - path: {{ .Values.nginx.ingress.path }}
             pathType: Prefix
@@ -14,4 +17,7 @@ spec:
                 name: {{ .Values.nginx.name }}
                 port:
                   number: {{ .Values.nginx.service.port }}
-
+  tls:
+  - hosts:
+    - itjobs.os-fonder.ru
+    secretName: itjobs-tls
