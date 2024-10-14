@@ -7,11 +7,6 @@
         <link href="{% static 'web/styles.css' %}" rel="stylesheet">
         <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
         <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
-        <script type="text/javascript">
-            if (window.location.protocol === "http:" && window.location.hostname !== 'localhost') {
-                window.location.href = "https://" + window.location.hostname + window.location.pathname + window.location.search;
-            }
-        </script>
         {% block styles %}
         {% endblock %}
         <!-- Bootstrap CSS only -->
